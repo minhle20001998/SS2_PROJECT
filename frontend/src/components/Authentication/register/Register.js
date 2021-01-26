@@ -149,7 +149,7 @@ class Register extends Component {
     render() {
         return <div className="register">
             <h1 id="error"></h1>
-            <form id="register_form" action="http://localhost:3030/register" method="POST">
+            <form id="register_form" method="POST" action="http://localhost:3030/register">
                 <label htmlFor="uname"><b>Username</b></label>
                 <input id='name_input' type="text" placeholder="Enter Username" name="uname" required
                     onInput={this.setName} />
@@ -167,7 +167,7 @@ class Register extends Component {
                 />
                 <div id='email_validate'></div>
 
-                <button type="submit" onClick={this.fetchRegister}>Login</button>
+                <button type="submit" onClick={this.fetchRegister}>Sign up</button>
             </form>
 
         </div>
