@@ -40,6 +40,7 @@ class Login extends Component {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: 'include',
       body: JSON.stringify(body),
     });
     const returnMessage = await response.json();
@@ -54,7 +55,7 @@ class Login extends Component {
             <b>Username</b>
             <span className="require">*</span>
           </label>
-          
+
           <input
             id="name_input"
             type="text"

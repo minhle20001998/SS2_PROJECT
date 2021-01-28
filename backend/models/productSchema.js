@@ -14,7 +14,10 @@ const ProductSchema = new Schema({
   price: {
     type: Number,
   },
-  
+  description: {
+    type: String
+  }
+
 });
 
 module.exports = mongoose.model("Products", ProductSchema);

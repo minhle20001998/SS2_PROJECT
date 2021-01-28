@@ -36,7 +36,7 @@ class userController {
         .save()
         .then((result) => {
           res.json({
-            message: "oke",
+            message: "register successfully",
           });
         })
         .catch((err) => {
@@ -48,15 +48,15 @@ class userController {
   }
 
   async login(req, res) {
-    const userDB = await UsersDB.findOne({ username: `${req.body.username}` });
     try {
+      const userDB = await UsersDB.findOne({ username: `${req.body.username}` });
       const isSame = await bcrypt.compare(req.body.password, userDB.password);
       if (isSame) {
         const token = encodedToken(userDB._id, userDB.username);
-        res.json({
+        res.cookie('login', token, { expires: new Date(Date.now() + process.env.COOKIE_LIFE_TIME) });
+        res.status(201).json({
           message: "login successfully",
-          user_token: token,
-        });
+        })
       } else {
         res.json({
           message: "password incorrect",
