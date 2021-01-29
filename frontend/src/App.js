@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import HomePage from './components/page/homepage/homepage.component';
 import Header from './components/header/header.component';
-
+// test them moi
+const a = 1;
 class App extends Component {
   render() {
     return (
