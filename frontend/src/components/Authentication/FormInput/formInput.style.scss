@@ -1,0 +1,44 @@
+
+// tạo một màu đặc biệt, sau đó sử dụng nhiều lần 
+
+$sub-color: grey;
+$main-color: black;
+
+// tạo một style riêng để sử dụng nó lặp lại ko cần phải gõ lại nhiều lần
+// cách thức sử dụng là một "@mixin" đặt ở đầu
+
+@mixin shrinkLabel{
+    top: -14px;
+    font-size: 12px;
+    color: $main-color;
+}
+.group {
+     position: relative;
+     margin: 4px 0;
+
+     .form-input{
+         background: none;
+         background-color: white;
+         color: $sub-color;
+         padding: 10px 10px 10px 5px;
+         display: block;
+         width: 100%;
+         border: none;
+         border-radius: 0;
+         border-bottom: 1px solid $sub-color;
+         margin: 25px 0;
+
+     }
+     .form-input-label{
+         color: $sub-color;
+         font-size: 16px;
+         font-weight: normal;
+         position: absolute;
+         pointer-events: none;
+         left:  5px;
+         top:10px;
+         transition: 300ms ease all;
+
+
+     }
+}
