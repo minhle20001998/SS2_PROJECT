@@ -5,16 +5,21 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import HomePage from './components/page/homepage/homepage.component';
 import Header from './components/header/header.component';
-// test them moi
-const a = 1;
+import SlideShow from './components/slideShowGallery/slideShowGallery.component';
+
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="App">
         <Route exact path="/">
-        <Header></Header>
+        <Header/>
+       </Route>
+
+          <Route exact path="/slide">
+          <SlideShow/>
           </Route>
+
           <Route exact path="/register">
             <Register />
           </Route>
