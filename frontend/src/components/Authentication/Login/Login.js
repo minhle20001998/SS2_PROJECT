@@ -59,13 +59,10 @@ class Login extends Component {
             <b>Username</b>
             <span className="require">*</span>
           </label>
-<<<<<<< .merge_file_a09584
 
-          <input
-=======
+
           
           <FormInput
->>>>>>> .merge_file_a01148
             id="name_input"
             type="text"
             placeholder="Enter Username"
