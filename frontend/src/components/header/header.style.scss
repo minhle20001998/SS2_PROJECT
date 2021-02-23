@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     font-size: 1.0rem;
+    position: fixed;
 }
 .navbar-logo{
     color: white;
@@ -40,9 +41,13 @@
 }
 .fa-bars{
     color: #fff;
+}
+.fa-shopping-cart{
+    color: #fff;
+    font-size: 25px;
+    margin-right: 15px;
     
 }
-
 .menu-icon{
     display: none;
 }

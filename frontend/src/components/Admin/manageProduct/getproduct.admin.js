@@ -12,29 +12,35 @@ class getProduct extends React.Component {
             productDescription: ''
         }
     }
+    
     async fetchProduct(e){
-        // const {productName, productPrice, productQuantity,productDescription} = this.state;
-        const url = 'http: localhost:3030/admin/products';
-        // const body = {
-        //     productName: productName,
-        //     productPrice: productPrice,
-        //     productQuantity: productQuantity,
-        //     productDescription: productDescription
-        // }
-        const response  = await fetch(url, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include"
-          // body: JSON.stringify(body),
-        });
-        const data = await response.json();
-        console.log(data);
+        // // const {productName, productPrice, productQuantity,productDescription} = this.state;
+        // const url ='http:localhost:3030/admin/products';
+        // // const body = {
+        // //     productName: productName,
+        // //     productPrice: productPrice,
+        // //     productQuantity: productQuantity,
+        // //     productDescription: productDescription
+        // // }
+        // const response  = await fetch(url, {
+        //   method: "GET",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   // body: JSON.stringify(body),
+        // });
+        // const data = await response;
+        // console.log(data);
+        const axios = require('axios');
+        const data = await axios.get('http://localhost:3030/admin/products');
+        console.log(data.data);
+        return data;
 
     }
     componentDidMount(){
-      this.fetchProduct();
+     let container_data = this.fetchProduct();
+     console.log(JSON.stringify(container_data.json()));
+      
     }
     render() {
     return (

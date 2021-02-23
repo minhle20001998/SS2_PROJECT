@@ -6,12 +6,15 @@ class NavBar extends React.Component {
   constructor(){
     super()
     this.state = {
-      clicked: false
+      clicked: false,
     }
   }
   handleClick = () => {
     this.setState({clicked: !this.state.clicked})
   }
+
+  //scroll
+//------------------------------------------------
   render() {
       return (
           <div>
@@ -34,11 +37,14 @@ class NavBar extends React.Component {
         <li>
           <a className ='nav-links' href='/'>CHILDREN</a>
         </li>
+        <li>
+          <a className ='nav-links' href='/'>CONTACT</a>
+        </li>
       </ul>
+      <i class="fas fa-shopping-cart"></i>
       <Button className='button'> <a className='link' href='/register'>SIGN UP</a></Button>
       <br></br>
-      <Button> <a className='link' href='/login'>LOGIN</a></Button>
-
+      <Button> <a className='link' href='/login'> LOGIN </a></Button>
     </nav>
 
     </div>

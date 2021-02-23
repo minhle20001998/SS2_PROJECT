@@ -9,8 +9,9 @@ import SlideShow from "./components/slideShowGallery/slideShowGallery.component"
 //admin
 import Header1 from './components/Admin/homeforAdmin/header.admin';
 import GetProduct from './components/Admin/manageProduct/getproduct.admin'
-
+import Space from './components/header/space/space.header'
 class App extends Component {
+
   render() {
     return (
       <Router>
@@ -19,6 +20,8 @@ class App extends Component {
     {/* routers use for user */}
           <Route exact path="/">
             <Header />
+            <Space/>
+            <SlideShow />
             <SlideShow />
           </Route>
           <Route exact path="/register">
