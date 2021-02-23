@@ -1,26 +1,25 @@
+
 import React, { Component } from "react";
-import "./header.style.scss";
-import Button from './button/button';
+import "../../header/header.style.scss";
+import Button from '../../header/button/button';
 class NavBar extends React.Component {
 
   constructor(){
     super()
     this.state = {
-      clicked: false,
+      clicked: false
     }
   }
   handleClick = () => {
     this.setState({clicked: !this.state.clicked})
-  }
 
-  //scroll
-//------------------------------------------------
+  }
   render() {
       return (
           <div>
     <nav className="NavbarItems">
       <h1 className="navbar-logo">
-        DEV <i className ="fab fa-react"></i>
+        Admin <i className ="fab fa-react"></i>
       </h1>
 
       <div className="menu-icon" onClick = {this.handleClick}>
@@ -29,22 +28,19 @@ class NavBar extends React.Component {
 
       <ul className= {this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
         <li>
-          <a className ='nav-links' href='/'>MEN</a>
+          <a className ='nav-links' href='/admin/users'>Manage User</a>
         </li>
         <li>
-          <a className ='nav-links' href='/'>WOMEN</a>
+          <a className ='nav-links' href='/admin/products'>Manage Product</a>
         </li>
         <li>
-          <a className ='nav-links' href='/'>CHILDREN</a>
-        </li>
-        <li>
-          <a className ='nav-links' href='/'>CONTACT</a>
+          <a className ='nav-links' href='/'>Manage ...</a>
         </li>
       </ul>
-      <i class="fas fa-shopping-cart"></i>
       <Button className='button'> <a className='link' href='/register'>SIGN UP</a></Button>
       <br></br>
-      <Button> <a className='link' href='/login'> LOGIN </a></Button>
+      <Button> <a className='link' href='/login'>LOGIN</a></Button>
+
     </nav>
 
     </div>
