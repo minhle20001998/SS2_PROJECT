@@ -150,40 +150,40 @@ class Register extends Component {
     }
     render() {
         return (
-        <div className= "register">
-            <h1 id="error"></h1>
-            <form id="register_form" method="POST" action="http://localhost:3030/register">
-                <label htmlFor="uname"><b>Username</b>
-                <span class="require">*</span>
-</label>
-                
-                <FormInput id='name_input' type="text" placeholder="Enter Username" name="uname" required
-                    onInput={this.setName} />
-                <div id='username_validate'></div>
+            <div className="register">
+                <h1 id="error"></h1>
+                <form id="register_form" method="POST" action="http://localhost:3030/register">
+                    <label htmlFor="uname"><b>Username</b>
+                        <span class="require">*</span>
+                    </label>
 
-                <label htmlFor="psw"><b>Password</b>
-                <span class="require">*</span>
-</label>
-                <FormInput id='password_input' type="password" placeholder="Enter Password" name="psw" required
-                    onInput={this.setPassword}
-                />
-                <div id='password_strength'></div>
+                    <FormInput id='name_input' type="text" placeholder="Enter Username" name="uname" required
+                        onInput={this.setName} />
+                    <div id='username_validate'></div>
 
-                <label htmlFor="email"><b>Email</b> 
-                <span class="require">*</span> </label>
-                <FormInput id='email_input' type="text" placeholder="Enter Email" name="email" required
-                    onInput={this.setEmail}
-                />
-                <div id='email_validate'></div>
+                    <label htmlFor="psw"><b>Password</b>
+                        <span class="require">*</span>
+                    </label>
+                    <FormInput id='password_input' type="password" placeholder="Enter Password" name="psw" required
+                        onInput={this.setPassword}
+                    />
+                    <div id='password_strength'></div>
 
-                <CustomButton type="submit" onClick={this.fetchRegister}>Sign up</CustomButton>
-                <div className ='icon'>
-                <img src="https://img.icons8.com/color/48/000000/google-logo.png"/>
-                <img src="https://img.icons8.com/color/48/000000/facebook-new.png"/>
-                </div>
-            </form>
+                    <label htmlFor="email"><b>Email</b>
+                        <span class="require">*</span> </label>
+                    <FormInput id='email_input' type="text" placeholder="Enter Email" name="email" required
+                        onInput={this.setEmail}
+                    />
+                    <div id='email_validate'></div>
 
-        </div>
+                    <CustomButton type="submit" onClick={this.fetchRegister}>Sign up</CustomButton>
+                    <div className='icon'>
+                        <img src="https://img.icons8.com/color/48/000000/google-logo.png" />
+                        <img src="https://img.icons8.com/color/48/000000/facebook-new.png" />
+                    </div>
+                </form>
+
+            </div>
         )
     }
 }

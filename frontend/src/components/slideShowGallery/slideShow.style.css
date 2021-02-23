@@ -1,11 +1,14 @@
-
-.containerSlide {
-    width: 650px;
-    margin: auto;
-    padding-top: 200px;
+.each-slide > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: 350px;
 }
 
-.containerSlide img {
-    height: 500px;
-
+.each-slide span {
+  padding: 20px;
+  font-size: 20px;
+  background: #efefef;
+  text-align: center;
 }

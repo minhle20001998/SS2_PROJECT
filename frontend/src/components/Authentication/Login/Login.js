@@ -52,23 +52,23 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
-      
+
         <form id="login_form">
-        {/* <img src="" alt=""></img> */}
+          {/* <img src="" alt=""></img> */}
           <label htmlFor="uname">
             <b>Username</b>
             <span className="require">*</span>
           </label>
 
 
-          
+
           <FormInput
             id="name_input"
             type="text"
             placeholder="Enter Username"
             name="uname"
             required
-            onInput={this.setName}/>
+            onInput={this.setName} />
           <label htmlFor="psw">
             <b>Password</b>
             <span class="require">*</span>
@@ -86,11 +86,11 @@ class Login extends Component {
           <CustomButton type="submit" onClick={this.fetchLogin}>
             Login
           </CustomButton>
-          <br/>
-          <Link to ='/register' class ='linkSignUp'>Sign Up</Link>
-          <div className ='icon'>
-          <img src="https://img.icons8.com/color/48/000000/google-logo.png"/>
-          <img src="https://img.icons8.com/color/48/000000/facebook-new.png"/>
+          <br />
+          <Link to='/register' class='linkSignUp'>Sign Up</Link>
+          <div className='icon'>
+            <img src="https://img.icons8.com/color/48/000000/google-logo.png" />
+            <img src="https://img.icons8.com/color/48/000000/facebook-new.png" />
           </div>
           {/* <CustomButton >
             <link to ='/register'> Sign Up</link>
