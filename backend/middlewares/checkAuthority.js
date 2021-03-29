@@ -26,6 +26,7 @@ const checkAuthority = (req, res, next) => {
             }
         })
     }
+    // next();
 }
 
 

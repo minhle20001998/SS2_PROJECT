@@ -26,7 +26,7 @@ class userController {
     bcrypt.hash(req.body.password, this.saltRounds, function (err, hash) {
       // Store hash in your password DB.
       const user = new UsersDB({
-        _id: new mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId().toHexString(),
         username: req.body.username,
         password: hash,
         contacts: { email: req.body.email },

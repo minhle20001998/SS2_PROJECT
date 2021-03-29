@@ -1,7 +1,23 @@
 const productSchema = require("../../models/productSchema");
 const mongoose = require("mongoose");
+const multer = require('multer');
 
 class manageProductController {
+  //get specifict products
+  async getProduct(req, res) {
+    const { id } = req.params;
+    const productDB = await productSchema.find({ _id: id });
+    try {
+      res.json({
+        products: productDB
+      })
+    } catch (err) {
+      res.json({
+        err: `${err}`
+      })
+    }
+  }
+
   //get all products
   async getProducts(req, res) {
     try {
@@ -16,13 +32,25 @@ class manageProductController {
 
     }
   }
+
+
   //create a product
   createProduct(req, res) {
+    const product_image = [];
+    const images = [];
+    if (req.files) {
+      req.files.map((image) => {
+        images.push(image.path)
+      })
+    }
+    const colors = req.body.colors;
+    product_image.push(colors);
+    product_image.push(images);
     const product = new productSchema({
-      _id: new mongoose.Types.ObjectId(),
+      _id: new mongoose.Types.ObjectId().toHexString(),
       product_name: req.body.product_name,
       quantity: req.body.quantity,
-      img: req.body.img,
+      product_image: product_image,
       price: req.body.price,
       description: req.body.description
     });
