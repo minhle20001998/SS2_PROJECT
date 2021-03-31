@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const productManageController = require("../../controllers/admin-controller/productManage");
-const checkAuthority = require("../../middlewares/checkAuthority");
+const checkAdminAuthority = require("../../middlewares/checkAuthority");
 const multer = require('multer');
 
 const storage = multer.diskStorage({
@@ -36,10 +36,10 @@ const upload = multer({
 
 
 //middleware check if authority is admin
-router.get("/products", productManageController.getProducts);
-router.get("/product/:id", productManageController.getProduct);
-router.post("/products/create", upload.array('productImage'), checkAuthority, productManageController.createProduct);
-router.put("/products/updateOne", checkAuthority, productManageController.updateProduct);
-router.delete("/products/deleteOne/:id", checkAuthority, productManageController.deleteProduct);
+router.get("/", productManageController.getProducts);
+router.get("/:id", productManageController.getProduct);
+router.post("/", upload.array('productImage'), productManageController.createProduct);
+router.put("/", checkAdminAuthority, productManageController.updateProduct);
+router.delete("/:id", checkAdminAuthority, productManageController.deleteProduct);
 
 module.exports = router;

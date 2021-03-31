@@ -1,7 +1,8 @@
-const UsersDB = require("../models/usersSchema");
+const UsersDB = require("../../models/usersSchema");
 const mongoose = require("mongoose");
 const JWT = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const cartManagement = require('../cart-controller/cartManagement');
 const encodedToken = (userID, userName) => {
   return JWT.sign(
     {
@@ -23,28 +24,38 @@ class userController {
   }
 
   register(req, res) {
-    bcrypt.hash(req.body.password, this.saltRounds, function (err, hash) {
-      // Store hash in your password DB.
-      const user = new UsersDB({
-        _id: new mongoose.Types.ObjectId().toHexString(),
-        username: req.body.username,
-        password: hash,
-        contacts: { email: req.body.email },
-        authority: "client",
-      });
-      user
-        .save()
-        .then((result) => {
-          res.json({
-            message: "register successfully",
-          });
-        })
-        .catch((err) => {
-          res.json({
-            message: `${Object.keys(err.keyPattern)[0]} is existed`,
-          });
+    bcrypt.hash(req.body.password, this.saltRounds, async function (err, hash) {
+      try {
+        const user = new UsersDB({
+          _id: new mongoose.Types.ObjectId().toHexString(),
+          username: req.body.username,
+          password: hash,
+          contacts: { email: req.body.email },
+          authority: "client",
         });
-    });
+        const saveUser = await user.save();
+        if (saveUser) {
+          console.log(saveUser)
+          cartManagement.createCart({
+            body: {
+              userID: saveUser._id
+            }
+          });
+          res.json({
+            message: "register successfully"
+          })
+        } else {
+          res.json({
+            err: "error"
+          })
+        }
+      } catch (err) {
+        res.json({
+          message: `${Object.keys(err.keyPattern)[0]} is existed`
+        })
+      }
+    })
+
   }
 
   async login(req, res) {

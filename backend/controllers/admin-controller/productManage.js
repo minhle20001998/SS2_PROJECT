@@ -16,15 +16,14 @@ class manageProductController {
         err: `${err}`
       })
     }
+    return productDB;
   }
 
   //get all products
   async getProducts(req, res) {
     try {
       const productDB = await productSchema.find({});
-      res.json({
-        products: productDB
-      })
+      res.json(productDB)
     } catch (err) {
       res.json({
         err: `${err}`
@@ -36,28 +35,24 @@ class manageProductController {
 
   //create a product
   createProduct(req, res) {
-    const product_image = [];
-    const images = [];
+    const color_and_images = [];
+    const colors = req.body.colors;
     if (req.files) {
-      req.files.map((image) => {
-        images.push(image.path)
+      req.files.map((image, index) => {
+        color_and_images.push({ image: image.path, color: colors[index] })
       })
     }
-    const colors = req.body.colors;
-    product_image.push(colors);
-    product_image.push(images);
     const product = new productSchema({
       _id: new mongoose.Types.ObjectId().toHexString(),
       product_name: req.body.product_name,
       quantity: req.body.quantity,
-      product_image: product_image,
+      colors: color_and_images,
       price: req.body.price,
-      description: req.body.description
+      description: req.body.description,
+      size: req.body.size
     });
     product.save().then((result) => {
-      res.json({
-        products: result,
-      })
+      res.json(result)
     }).catch((err) => {
       res.json({
         err: `${Object.keys(err.keyPattern)[0]}`,
@@ -67,12 +62,10 @@ class manageProductController {
   //update a product
   async updateProduct(req, res) {
     try {
-      const updatedProduct = await productSchema.findOneAndUpdate({ _id: req.body._id }, req.body.update, {
+      const updatedProduct = await productSchema.findOneAndUpdate({ _id: req.body._id }, req.body, {
         new: true
       })
-      res.json({
-        products: updatedProduct
-      })
+      res.json(updatedProduct)
     } catch (err) {
       res.json({
         err: `error ${err}`

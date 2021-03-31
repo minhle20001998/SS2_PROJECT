@@ -8,16 +8,9 @@ const Cart = new Schema({
     userID: {
         type: String
     },
-    productID: [
-        {
-            type: String,
-        }
-    ],
-    quantity: [
-        {
-            type: Number,
-        }
-    ],
+    products: {
+        type: Object
+    }
 });
 
 module.exports = mongoose.model("Cart", Cart);

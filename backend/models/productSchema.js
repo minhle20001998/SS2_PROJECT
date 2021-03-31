@@ -8,15 +8,19 @@ const ProductSchema = new Schema({
   quantity: {
     type: Number,
   },
-  product_image: [
-    [String], [String]
-  ],
+  colors: [{
+    type: Object
+  }],
   price: {
     type: Number,
   },
   description: {
     type: String
+  },
+  size: {
+    type: Number
   }
+
 });
 
 module.exports = mongoose.model("Products", ProductSchema);
