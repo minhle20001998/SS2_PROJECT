@@ -76,14 +76,39 @@ class manageProductController {
   async deleteProduct(req, res) {
     try {
       const deleteProduct = await productSchema.deleteOne({ _id: req.params.id });
-      res.json({
-        products: deleteProduct
-      })
+      if (deleteProduct.n > 0)
+        res.json(deleteProduct)
+      else
+        res.json({
+          err: "no cart found"
+        })
     } catch (err) {
       res.json({
         err: `error ${err}`
       })
     }
+  }
+
+  async reduceQuantity(productID, quantity) {
+
+  }
+
+  async getProductsPrice(products) {
+    // [{
+    //   productID
+    //   quantity
+    // },]
+    let totalPrice = 0;
+    const result = await Promise.all(products.map(async (product) => {
+      const productDB = await productSchema.findOne({ _id: product.id });
+      return productDB;
+    }))
+    result.map((product) => {
+      const filter = products.filter(p => p.id === product._id)[0];
+      totalPrice += product.price * filter.quantity
+    })
+    console.log("total", totalPrice)
+    return totalPrice;
   }
 }
 

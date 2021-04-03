@@ -79,6 +79,18 @@ class userController {
       });
     }
   }
+
+  async getUserName(req, res, id) {
+    const username = await UsersDB.findOne({ _id: id });
+    if (!username) {
+      res.json({
+        err: "user not found"
+      })
+      return null;
+    } else {
+      return username.username;
+    }
+  }
 }
 
 module.exports = new userController();

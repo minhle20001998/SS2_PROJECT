@@ -16,7 +16,7 @@ const checkRegister = (req, res, next) => {
 const checkIfCartExist = async (req, res, next) => {
     const { userID } = req.body;
     const cart = await cartSchema.findOne({ userID: userID });
-    if (cart === null)
+    if (!cart)
         next();
     else
         res.json({
@@ -24,6 +24,20 @@ const checkIfCartExist = async (req, res, next) => {
         })
 }
 
+const checkIfProduct = async (req, res, next) => {
+    const { productID } = req.body;
+    const product = await productSchema.findOne({ _id: productID });
+    if (product) {
+        next();
+    } else {
+        res.json({
+            err: "product not found !"
+        })
+    }
+}
+
 
 module.exports.checkRegister = checkRegister;
 module.exports.checkIfCartExist = checkIfCartExist;
+module.exports.checkIfProduct = checkIfProduct;
+

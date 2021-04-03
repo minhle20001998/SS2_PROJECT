@@ -33,6 +33,12 @@ app.listen(process.env.SERVER_PORT, () => {
     console.log(`Listening on port ${process.env.SERVER_PORT}`)
 })
 
+// const UserController = require('./controllers/user-controller/userController');
+// async function test() {
+//     const a = await UserController.getUserName('6061fbdac39e1f712a03cde9');
+//     console.log(a)
+// }
+// test();
 
 
 

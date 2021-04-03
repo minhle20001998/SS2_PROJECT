@@ -61,7 +61,7 @@ class cartManagement {
                     products: this.toProducts(products, validateProduct)
                 }, {
                     new: true
-                })
+                });
                 res.json(updatedCart)
             } else {
                 res.json({
@@ -69,9 +69,9 @@ class cartManagement {
                 })
             }
         } catch (err) {
-            res.json({
-                err: `error ${err}`
-            })
+            if (res) {
+                res.status(500).send(err);
+            }
         }
     }
 
@@ -85,9 +85,25 @@ class cartManagement {
                     err: "no cart found"
                 })
         } catch (err) {
-            res.json({
-                err: `error ${err}`
+            if (res) {
+                res.status(500).send(err);
+            }
+        }
+    }
+
+    async deleteProductCart(req, res) {
+        try {
+            const { id } = req.params;
+            const cart = await cartSchema.findOneAndUpdate({ _id: id }, {
+                products: []
+            }, {
+                new: true
             })
+            res.json(cart);
+        } catch (err) {
+            if (res) {
+                res.status(500).send(err);
+            }
         }
     }
 
