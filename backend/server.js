@@ -22,7 +22,7 @@ const swaggerOptions = {
             servers: ["http://localhost:3030"]
         },
     },
-    apis: ["./routes/admin.route/*.js"]
+    apis: ["./routes/admin.route/*.js", "./routes/cart.route/*.js"]
 }
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
@@ -32,7 +32,8 @@ require('dotenv').config();
 const JWT = require("jsonwebtoken");
 
 // 
-mongoose.connect(`${process.env.MONGODB_URL}`, {
+const mongopath = `mongodb+srv://bitis:${process.env.MONGODB_PASSWORD}@bitis.oo9yu.mongodb.net/bitis?retryWrites=true&w=majority`
+mongoose.connect(mongopath, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,

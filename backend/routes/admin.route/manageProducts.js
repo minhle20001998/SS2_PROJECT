@@ -34,12 +34,20 @@ const upload = multer({
     fileFilter: fileFilter
 });
 
+/**
+ * @swagger
+ * tags:
+ *      name: Products
+ *      description: API to manage products
+ */
 
 //middleware check if authority is admin
 /**
  * @swagger
+ * path:
  * /product:
  *  get:
+ *      tags: [Products]
  *      description: Use to get all products
  *      responses: 
  *          '200':
@@ -52,6 +60,7 @@ router.get("/", productManageController.getProducts);
  * @swagger
  * /product/:id:
  *  get:
+ *      tags: [Products]
  *      description: Use to get a specifict product
  *      responses: 
  *          '200':
@@ -64,6 +73,7 @@ router.get("/:id", productManageController.getProduct);
  * @swagger
  * /product:
  *  post:
+ *      tags: [Products]
  *      description: Use to create a product
  *      parameters:
  *       - name: product_name
@@ -107,6 +117,7 @@ router.post("/", upload.array('productImage'), productManageController.createPro
  * @swagger
  * /product:
  *  put:
+ *      tags: [Products]
  *      description: Use to update a product
  *      parameters:
  *       - name: product_name
@@ -145,6 +156,7 @@ router.put("/", productManageController.updateProduct);
  * @swagger
  * /product/:id:
  *  delete:
+ *      tags: [Products]
  *      description: Use to delete a product
  *      responses: 
  *          '200':
