@@ -36,10 +36,122 @@ const upload = multer({
 
 
 //middleware check if authority is admin
+/**
+ * @swagger
+ * /product:
+ *  get:
+ *      description: Use to get all products
+ *      responses: 
+ *          '200':
+ *              description: A successful response
+ *          '401':
+ *              description: Unauthorized
+ */
 router.get("/", productManageController.getProducts);
+/**
+ * @swagger
+ * /product/:id:
+ *  get:
+ *      description: Use to get a specifict product
+ *      responses: 
+ *          '200':
+ *              description: A successful response
+ *          '401':
+ *              description: Unauthorized
+ */
 router.get("/:id", productManageController.getProduct);
+/**
+ * @swagger
+ * /product:
+ *  post:
+ *      description: Use to create a product
+ *      parameters:
+ *       - name: product_name
+ *         description: product name
+ *         in: formData
+ *         required: true
+ *         type: String
+ *       - name: quantity
+ *         description: product quantity
+ *         in: formData
+ *         required: true
+ *         type: Integer
+ *       - name: colors
+ *         description: product colors
+ *         in: formData
+ *         required: true
+ *         type: Array
+ *       - name: files
+ *         description: product images
+ *         in: formData
+ *         required: true
+ *         type: File
+ *       - name: description
+ *         description: product description
+ *         in: formData
+ *         required: true
+ *         type: String
+ *       - name: size
+ *         description: product size
+ *         in: formData
+ *         required: true
+ *         type: Integer    
+ *      responses: 
+ *          '200':
+ *              description: A successful response
+ *          '401':
+ *              description: Unauthorized
+ */
 router.post("/", upload.array('productImage'), productManageController.createProduct);
+/**
+ * @swagger
+ * /product:
+ *  put:
+ *      description: Use to update a product
+ *      parameters:
+ *       - name: product_name
+ *         description: product name
+ *         in: formData
+ *         required: true
+ *         type: String
+ *       - name: quantity
+ *         description: product quantity
+ *         in: formData
+ *         required: true
+ *         type: Integer
+ *       - name: colors
+ *         description: [{image: String, color: String}]
+ *         in: formData
+ *         required: true
+ *         type: Object
+ *       - name: description
+ *         description: product description
+ *         in: formData
+ *         required: true
+ *         type: String
+ *       - name: size
+ *         description: product size
+ *         in: formData
+ *         required: true
+ *         type: Integer  
+ *      responses: 
+ *          '200':
+ *              description: A successful response
+ *          '401':
+ *              description: Unauthorized
+ */
 router.put("/", productManageController.updateProduct);
+/**
+ * @swagger
+ * /product/:id:
+ *  delete:
+ *      description: Use to delete a product
+ *      responses: 
+ *          '200':
+ *              description: A successful response
+ *          '401':
+ *              description: Unauthorized
+ */
 router.delete("/:id", checkAdminAuthority, productManageController.deleteProduct);
 
 module.exports = router;

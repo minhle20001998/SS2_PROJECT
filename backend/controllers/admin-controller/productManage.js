@@ -35,8 +35,8 @@ class manageProductController {
 
   //create a product
   createProduct(req, res) {
+    const { colors, product_name, quantity, price, description, size } = req.body;
     const color_and_images = [];
-    const colors = req.body.colors;
     if (req.files) {
       req.files.map((image, index) => {
         color_and_images.push({ image: image.path, color: colors[index] })
