@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import './Login.css';
+import FormInput from '../FormInput/formInput.component';
+import CustomButton from '../CustomButton/customButton.component';
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -50,25 +52,31 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
+      
         <form id="login_form">
+        {/* <img src="" alt=""></img> */}
           <label htmlFor="uname">
             <b>Username</b>
             <span className="require">*</span>
           </label>
+<<<<<<< .merge_file_a09584
 
           <input
+=======
+          
+          <FormInput
+>>>>>>> .merge_file_a01148
             id="name_input"
             type="text"
             placeholder="Enter Username"
             name="uname"
             required
-            onInput={this.setName}
-          />
+            onInput={this.setName}/>
           <label htmlFor="psw">
             <b>Password</b>
             <span class="require">*</span>
           </label>
-          <input
+          <FormInput
             id="password_input"
             type="password"
             placeholder="Enter Password"
@@ -78,9 +86,18 @@ class Login extends Component {
           />
           {/* <input type ='checkbox' />
           <label> Remember me</label> */}
-          <button type="submit" onClick={this.fetchLogin}>
+          <CustomButton type="submit" onClick={this.fetchLogin}>
             Login
-          </button>
+          </CustomButton>
+          <br/>
+          <Link to ='/register' class ='linkSignUp'>Sign Up</Link>
+          <div className ='icon'>
+          <img src="https://img.icons8.com/color/48/000000/google-logo.png"/>
+          <img src="https://img.icons8.com/color/48/000000/facebook-new.png"/>
+          </div>
+          {/* <CustomButton >
+            <link to ='/register'> Sign Up</link>
+          </CustomButton> */}
         </form>
       </div>
     );

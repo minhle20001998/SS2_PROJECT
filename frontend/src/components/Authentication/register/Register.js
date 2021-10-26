@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-
+import CustomButton from '../CustomButton/customButton.component';
+import FormInput from '../FormInput/formInput.component';
+import './register.style.css';
 class Register extends Component {
     constructor(props) {
         super(props);
@@ -147,30 +149,42 @@ class Register extends Component {
         return pattern.test(email);
     }
     render() {
-        return <div className="register">
+        return (
+        <div className= "register">
             <h1 id="error"></h1>
             <form id="register_form" method="POST" action="http://localhost:3030/register">
-                <label htmlFor="uname"><b>Username</b></label>
-                <input id='name_input' type="text" placeholder="Enter Username" name="uname" required
+                <label htmlFor="uname"><b>Username</b>
+                <span class="require">*</span>
+</label>
+                
+                <FormInput id='name_input' type="text" placeholder="Enter Username" name="uname" required
                     onInput={this.setName} />
                 <div id='username_validate'></div>
 
-                <label htmlFor="psw"><b>Password</b></label>
-                <input id='password_input' type="password" placeholder="Enter Password" name="psw" required
+                <label htmlFor="psw"><b>Password</b>
+                <span class="require">*</span>
+</label>
+                <FormInput id='password_input' type="password" placeholder="Enter Password" name="psw" required
                     onInput={this.setPassword}
                 />
                 <div id='password_strength'></div>
 
-                <label htmlFor="email"><b>Email</b></label>
-                <input id='email_input' type="text" placeholder="Enter Email" name="email" required
+                <label htmlFor="email"><b>Email</b> 
+                <span class="require">*</span> </label>
+                <FormInput id='email_input' type="text" placeholder="Enter Email" name="email" required
                     onInput={this.setEmail}
                 />
                 <div id='email_validate'></div>
 
-                <button type="submit" onClick={this.fetchRegister}>Sign up</button>
+                <CustomButton type="submit" onClick={this.fetchRegister}>Sign up</CustomButton>
+                <div className ='icon'>
+                <img src="https://img.icons8.com/color/48/000000/google-logo.png"/>
+                <img src="https://img.icons8.com/color/48/000000/facebook-new.png"/>
+                </div>
             </form>
 
         </div>
+        )
     }
 }
 
